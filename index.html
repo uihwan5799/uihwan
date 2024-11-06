@@ -1,27 +1,346 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko">
   <head>
-    <!-- JQuery Load -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.js"
-      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-      crossorigin="anonymous"
-    ></script>
-    <!-- CSS Load -->
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+      #container1,
+      #container2 {
+        height: 400px;
+        width: 100%;
+        margin-bottom: 0px; /* 간격을 줄이기 위해 100px에서 50px로 조정 */
+      }
+      #info {
+        margin-top: 100px; /* 상하 여백 추가 */
+        font-size: 1.1em;
+      }
+      .highcharts-description {
+        color: #fff;
+        margin-bottom: 10px; /* 하단 여백을 10px로 줄여서 파이 차트와의 간격 줄이기 */
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000; /* 배경색을 검정으로 설정 */
+        color: #fff;
+        text-align: center;
+        font-family: "IBM Plex Sans KR", sans-serif;
+      }
+
+      h1 {
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: 200px; /* '보유 주식 현황'과 윗부분 간격 띄우기 */
+      }
+
+      title {
+        margin-top: 200px; /* '보유 주식 현황'과 윗부분 간격 띄우기 */
+      }
+
+      .stock-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px auto;
+        width: 85%;
+      }
+
+      .stock-section {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 50px;
+        margin-left: 200px;
+      }
+
+      .stock-section img {
+        width: 50%;
+        height: auto;
+      }
+
+      .stock-text {
+        width: 50%;
+        text-align: left;
+        margin-left: 20px;
+      }
+
+      .stock-text h2 {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #afff54;
+      }
+
+      .stock-text p {
+        font-size: 1.2em;
+        margin: 5px 0;
+        line-height: 1.5;
+      }
+
+      .stock-text p2 {
+        font-size: 1.2em;
+        margin: 5px 0;
+        line-height: 1.5;
+        color: #ff7f54;
+      }
+
+      .reverse-layout .stock-text {
+        text-align: right;
+        margin-right: 20px;
+        margin-left: 0;
+      }
+
+      .reverse-layout {
+        flex-direction: row-reverse;
+      }
+
+      .reverse-layout .stock-text h2 {
+        text-align: right;
+      }
+
+      .reverse-layout .stock-text p {
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
-    <div class="box active"></div>
-    <div class="box active"></div>
-    <div class="box active"></div>
-    <div class="box active"></div>
-    <div class="box active"></div>
+    <div>
+      <img
+        src="img/uihwan.png"
+        style="width: 100%; height: auto; margin-bottom: 100px"
+        alt="이미지 설명"
+      />
+    </div>
+
+    <!-- 막대 차트 -->
+    <figure class="highcharts-figure">
+      <div id="container1"></div>
+      <p class="highcharts-description"></p>
+    </figure>
+
+    <!-- 카테고리 정보 표시 -->
+    <div id="info"></div>
+
+    <!-- 파이 차트 -->
+    <figure class="highcharts-figure">
+      <div id="container2"></div>
+      <p class="highcharts-description">
+        선택된 소비 카테고리의 월별 지출 비율
+      </p>
+    </figure>
+
+    <h1>보유 주식 현황 (7~11)</h1>
+
+    <!-- Tesla Section -->
+    <div class="stock-container">
+      <div class="stock-section">
+        <img src="img/Tesla.png" alt="Tesla 주식 차트" />
+        <div class="stock-text">
+          <h2>TSLA (테슬라)</h2>
+          <p>7월 ~ 11월 변동: 209 >> 250 (+41)</p>
+          <p2>4개월 손익: 45만</p2>
+          <p>총 시가: 3.42T</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tesla Section -->
+    <div class="stock-container">
+      <div class="stock-section">
+        <img src="img/NVDA.png" alt="NVDA 주식 차트" />
+        <div class="stock-text">
+          <h2>NVDA (엔비디아)</h2>
+          <p>7월 ~ 11월 변동: 124 >> 136 (+12)</p>
+          <p2>4개월 손익: 5만</p2>
+          <p>총 시가: 3.43T</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <img
+        src="img/mudo.png"
+        style="width: 100%; height: auto; margin-top: 150px"
+        alt="이미지 설명"
+      />
+    </div>
+
+    <script>
+      // 월별 데이터 정의
+      const categories = ["7월", "8월", "9월", "10월", "11월"];
+      const dataSeries = {
+        문화: [38210, 18230, 21900, 8980, 32720],
+        의료비: [6750, 0, 72830, 18940, 0],
+        주거비: [96370, 92880, 90310, 86720, 87640],
+        통신비: [33000, 33000, 33000, 33000, 33000],
+        저축: [50000, 50000, 50000, 50000, 50000],
+        쇼핑: [332610, 215300, 123200, 251000, 153600],
+        교통비: [24100, 12630, 28360, 16860, 32640],
+        식비: [157500, 169340, 92500, 152390, 120820],
+      };
+
+      // 월별 색상 정의
+      const monthColors = [
+        "#95D5B2",
+        "#74C69D",
+        "#52B788",
+        "#40916C",
+        "#2C694E",
+      ];
+
+      // 전체 소비 금액 계산
+      const totalSums = Object.keys(dataSeries).map((category) => ({
+        category,
+        total: dataSeries[category].reduce((a, b) => a + b, 0),
+      }));
+
+      // 전체 금액 순위 정렬
+      totalSums.sort((a, b) => b.total - a.total);
+
+      // 막대 차트 생성
+      Highcharts.chart("container1", {
+        chart: {
+          type: "bar",
+          backgroundColor: "#000",
+          borderWidth: 0,
+        },
+        title: {
+          text: "월별 지출 내역",
+          align: "left",
+          style: {
+            color: "#fff",
+          },
+        },
+        xAxis: {
+          categories: categories,
+          labels: {
+            style: {
+              color: "#fff",
+            },
+          },
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: "지출 금액 (원)",
+            style: {
+              color: "#fff",
+            },
+          },
+          labels: {
+            style: {
+              color: "#fff",
+            },
+          },
+        },
+        legend: {
+          reversed: true,
+          itemStyle: {
+            color: "#fff",
+          },
+        },
+        plotOptions: {
+          series: {
+            stacking: "normal",
+            cursor: "pointer",
+            events: {
+              click: function (event) {
+                const categoryName = event.point.series.name;
+                updatePieChart(categoryName);
+              },
+            },
+            dataLabels: {
+              enabled: true,
+              color: "#fff",
+            },
+          },
+        },
+        series: Object.keys(dataSeries).map((name, index) => ({
+          name: name,
+          data: dataSeries[name],
+          color: [
+            "#D7F2DB",
+            "#B7E4C7",
+            "#95D5B2",
+            "#74C69D",
+            "#52B788",
+            "#40916C",
+            "#2C694E",
+            "#1B4332",
+          ][index],
+        })),
+      });
+
+      // 파이 차트 업데이트 함수
+      function updatePieChart(categoryName) {
+        const categoryData = dataSeries[categoryName].map((value, index) => ({
+          name: categories[index],
+          y: value,
+          color: monthColors[index], // 월별 색상 적용
+        }));
+
+        // 선택한 카테고리의 총 소비 금액 계산
+        const totalAmount = categoryData.reduce((sum, data) => sum + data.y, 0);
+
+        // 선택한 카테고리의 등수 계산
+        const rank =
+          totalSums.findIndex((item) => item.category === categoryName) + 1;
+
+        // 파이 차트 업데이트
+        Highcharts.chart("container2", {
+          chart: {
+            type: "pie",
+            backgroundColor: "#000",
+          },
+          title: {
+            text: `'${categoryName}'의 월별 지출 비율`,
+            style: {
+              color: "#fff",
+            },
+          },
+          tooltip: {
+            pointFormat: "{point.name}: <b>{point.y} 원</b>",
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: "pointer",
+              dataLabels: {
+                enabled: true,
+                format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+                color: "#fff",
+              },
+              showInLegend: true,
+            },
+          },
+          series: [
+            {
+              name: "지출 금액",
+              colorByPoint: true,
+              data: categoryData,
+            },
+          ],
+        });
+
+        // 선택된 카테고리 정보 표시
+        document.getElementById("info").innerHTML = `
+          <strong>'${categoryName}' 카테고리 정보</strong><br>
+          <span style="color: #E56759;">총 소비 금액:</span> <span style="color: #E56759;">${totalAmount.toLocaleString()} 원</span><br>
+          <span style="color: #E56759;">전체 대비 순위:</span> <span style="color: #E56759;">${rank}위</span>
+        `;
+      }
+
+      // 초기 파이 차트 생성 (기본 선택된 항목 없음)
+      updatePieChart("문화");
+    </script>
   </body>
 </html>
-
-<!--
-html 뼈대
-Css 피부, 외관
-Js 근육
--->
